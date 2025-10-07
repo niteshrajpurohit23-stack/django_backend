@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: django-api
+    env: python
+    buildCommand: ./build.sh
+    startCommand: gunicorn your_project.wsgi:application --bind 0.0.0.0:$PORT
+    envVars:
+      - key: SECRET_KEY
+        value: your-secret-key
+      - key: DEBUG
+        value: False
+      - key: DATABASE_URL
+        value: mysql://username:password@aws.connect.psdb.cloud/attendance_db?ssl=true
